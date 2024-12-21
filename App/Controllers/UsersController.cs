@@ -62,6 +62,7 @@ public class CreateUserController(UsersService usersService) : ControllerBase
         }
 
         var user = request.ToDomain();
+        user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
         _usersService.Create(user);
 
         return CreatedAtAction(
