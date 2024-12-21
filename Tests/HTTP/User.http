@@ -2,6 +2,10 @@
 GET http://localhost:8000/api/users/123e4567-e89b-12d3-a456-426614174000
 Accept: application/json
 
+### Get a list of users
+GET http://localhost:8000/api/users
+Accept: application/json
+
 ###
 
 ### Create a new user
@@ -29,11 +33,11 @@ Content-Type: application/json
 {
   "FirstName": "John",
   "LastName": "Doe",
-  "Email": "example@gmail.com",
+  "Email": "example@yahoo.com",
   "PhoneNumber": "+1234567890",
   "Address": "No 1, Example Street",
   "DateOfBirth": "1990-01-01",
-  "Gender": "Male",
+  "Gender": "Male"
 }
 
 ###

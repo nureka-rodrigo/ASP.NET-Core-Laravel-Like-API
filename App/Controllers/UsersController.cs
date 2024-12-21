@@ -17,11 +17,33 @@ public class CreateUserController(UsersService usersService) : ControllerBase
     {
         var user = _usersService.Get(userId);
 
+        return user is null
+            ? NotFound(
+                new
+                {
+                    message = "User not found"
+                }
+            )
+            : Ok(
+                new
+                {
+                    message = "User found",
+                    user = UserResponse.FromDomain(user)
+                }
+            );
+    }
+
+    [HttpGet]
+    public IActionResult GetAll()
+    {
+        var users = _usersService.GetAll();
+        var userResponses = users.Select(UserResponse.FromDomain).ToList();
+
         return Ok(
             new
             {
-                message = "User Found",
-                user = UserResponse.FromDomain(user)
+                message = "Users found",
+                users = userResponses
             }
         );
     }
@@ -40,7 +62,6 @@ public class CreateUserController(UsersService usersService) : ControllerBase
         }
 
         var user = request.ToDomain();
-
         _usersService.Create(user);
 
         return CreatedAtAction(
@@ -61,10 +82,16 @@ public class CreateUserController(UsersService usersService) : ControllerBase
     public IActionResult Update(Guid userId, UpdateUserRequest request)
     {
         var user = request.ToDomain();
+        var status = _usersService.Update(user, userId);
 
-        _usersService.Update(user, userId);
-
-        return Ok(
+        return !status
+            ? NotFound(
+                new
+                {
+                    message = "User not found"
+                }
+            )
+            : Ok(
             new
             {
                 message = "User Updated",
@@ -76,9 +103,16 @@ public class CreateUserController(UsersService usersService) : ControllerBase
     [HttpDelete("{userId:guid}")]
     public IActionResult Delete(Guid userId)
     {
-        _usersService.Delete(userId);
+        var status = _usersService.Delete(userId);
 
-        return Ok(
+        return !status
+            ? NotFound(
+                new
+                {
+                    message = "User not found"
+                }
+            )
+            : Ok(
             new
             {
                 message = "User Deleted"
