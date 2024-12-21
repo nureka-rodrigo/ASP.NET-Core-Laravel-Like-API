@@ -9,8 +9,8 @@ COPY . .
 RUN dotnet publish -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
+ENV ASPNETCORE_HTTP_PORT=8000
+EXPOSE 8000
 WORKDIR /app
 COPY --from=build /app/publish .
-
-EXPOSE 80
 ENTRYPOINT ["dotnet", "AspNetCoreLaravelAPI.dll"]
