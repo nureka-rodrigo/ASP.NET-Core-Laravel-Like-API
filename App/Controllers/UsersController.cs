@@ -12,6 +12,20 @@ public class CreateUserController(UsersService usersService) : ControllerBase
 {
     private readonly UsersService _usersService = usersService;
 
+    [HttpGet("{userId:guid}")]
+    public IActionResult Get(Guid userId)
+    {
+        var user = _usersService.Get(userId);
+
+        return Ok(
+            new
+            {
+                message = "User Found",
+                user = UserResponse.FromDomain(user)
+            }
+        );
+    }
+
     [HttpPost]
     public IActionResult CreateUser(CreateUserRequest request)
     {
@@ -39,6 +53,35 @@ public class CreateUserController(UsersService usersService) : ControllerBase
             {
                 message = "User created successfully.",
                 user = UserResponse.FromDomain(user)
+            }
+        );
+    }
+
+    [HttpPut("{userId:guid}")]
+    public IActionResult Update(Guid userId, UpdateUserRequest request)
+    {
+        var user = request.ToDomain();
+
+        _usersService.Update(user, userId);
+
+        return Ok(
+            new
+            {
+                message = "User Updated",
+                user = UserResponse.FromDomain(user)
+            }
+        );
+    }
+
+    [HttpDelete("{userId:guid}")]
+    public IActionResult Delete(Guid userId)
+    {
+        _usersService.Delete(userId);
+
+        return Ok(
+            new
+            {
+                message = "User Deleted"
             }
         );
     }
