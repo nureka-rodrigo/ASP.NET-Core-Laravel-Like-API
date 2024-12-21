@@ -3,7 +3,6 @@ using AspNetCoreLaravelAPI.Database.Contexts;
 
 namespace AspNetCoreLaravelAPI.App.Services;
 
-
 public class UsersService(ApplicationDbContext context)
 {
     private readonly ApplicationDbContext _context = context;

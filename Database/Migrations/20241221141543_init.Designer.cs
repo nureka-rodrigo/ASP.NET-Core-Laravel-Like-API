@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AspNetCoreLaravelAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241221120216_init")]
+    [Migration("20241221141543_init")]
     partial class init
     {
         /// <inheritdoc />
