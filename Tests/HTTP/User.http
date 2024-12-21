@@ -1,0 +1,43 @@
+### Get a specific user by ID
+GET http://localhost:8000/api/users/123e4567-e89b-12d3-a456-426614174000
+Accept: application/json
+
+###
+
+### Create a new user
+POST http://localhost:8000/api/users
+Content-Type: application/json
+
+{
+  "FirstName": "John",
+  "LastName": "Doe",
+  "Email": "example@gmail.com",
+  "PhoneNumber": "+1234567890",
+  "Address": "No 1, Example Street",
+  "DateOfBirth": "1990-01-01",
+  "Gender": "Male",
+  "Password": "Password123#",
+  "ConfirmPassword": "Password123#"
+}
+
+###
+
+### Update an existing user
+PUT http://localhost:8000/api/users/123e4567-e89b-12d3-a456-426614174000
+Content-Type: application/json
+
+{
+  "FirstName": "John",
+  "LastName": "Doe",
+  "Email": "example@gmail.com",
+  "PhoneNumber": "+1234567890",
+  "Address": "No 1, Example Street",
+  "DateOfBirth": "1990-01-01",
+  "Gender": "Male",
+}
+
+###
+
+### Delete a user
+DELETE http://localhost:8000/api/users/123e4567-e89b-12d3-a456-426614174000
+Accept: application/json

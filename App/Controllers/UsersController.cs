@@ -51,7 +51,7 @@ public class CreateUserController(UsersService usersService) : ControllerBase
             },
             value: new
             {
-                message = "User created successfully.",
+                message = "User created.",
                 user = UserResponse.FromDomain(user)
             }
         );
