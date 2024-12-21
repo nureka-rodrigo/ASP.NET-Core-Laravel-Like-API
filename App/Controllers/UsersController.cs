@@ -4,7 +4,7 @@ using AspNetCoreLaravelAPI.App.Services;
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace AspNetCoreLaravelAPI.App.Controllers.Users;
+namespace AspNetCoreLaravelAPI.App.Controllers;
 
 [ApiController]
 [Route("api/users")]
